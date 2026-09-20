@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: #f5f1e9;
+  --color-paper-deep: #ece7db;
+  --color-card: #fbf9f4;
+  --color-ink: #1c1b19;
+  --color-body: #47443d;
+  --color-mute: #6b675e;
+  --color-line: #d9d3c5;
+  --color-accent: #24504c;
+  --color-accent-strong: #1a3b38;
+  --color-accent-soft: #dde6e0;
+
+  --font-display: 'Instrument Serif', 'Times New Roman', serif;
+  --font-sans: 'Hanken Grotesk Variable', 'Segoe UI', system-ui, sans-serif;
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper font-sans text-body antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    @apply bg-accent text-paper;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-accent;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-normal text-ink;
+    letter-spacing: -0.015em;
+  }
+}
+
+/* Soft scroll reveal — see components/Reveal.tsx */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Tinted monochrome icons (brand SVGs are used as masks so colour is controlled by CSS) */
+.icon-mask {
+  display: inline-block;
+  background-color: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
