@@ -12,10 +12,10 @@ const shots = (name: string, srcs: readonly string[], labels: string[]) =>
 export const portfolioProjects: PortfolioProject[] = [
   {
     id: 'foldline',
-    name: 'Foldline',
-    category: 'SaaS product website',
+    name: 'D&C Vet Clinic',
+    category: 'Vet Clinic Website',
     description:
-      'Marketing site and product preview for an invoicing and cash-flow tool aimed at small teams. The design leads with a real-looking dashboard, then explains the workflow in four plain steps.',
+      'Marketing site for a vet clinic',
     stack: ['React', 'TypeScript', 'Tailwind CSS'],
     images: shots('Foldline', media.portfolio.foldline, [
       'home page with dashboard preview',
